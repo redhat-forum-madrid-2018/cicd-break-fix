@@ -1,6 +1,6 @@
 ---
 
-- name: "[RHFORUM][BREAK] Breaking the awesome Lab at Red Hat Forum Madrid 2018"
+- name: "[RHFORUM][BREAK] Creating project for Break and Fix CICD..."
   shell: "oc new-project bad-code"
 
 - name: "[RHFORUM][BREAK] Breaking..."

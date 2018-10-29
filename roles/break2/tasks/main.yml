@@ -1,0 +1,21 @@
+---
+
+- name: "[RHFORUM][BREAK] Creating project for Break and Fix CICD..."
+  shell: "oc new-project bad-code"
+
+- name: "[RHFORUM][BREAK] Breaking..."
+  shell: "oc new-app jenkins-ephemereal"
+
+- name: "[RHFORUM][BREAK] Breaking..."
+  template:
+    src: "templates/nodejs-sample-pipeline.yaml.j2"
+    dest: "/tmp/nodejs-sample-pipeline.yaml"
+
+- name: "[RHFORUM][BREAK] Breaking..."
+  shell: "oc create -f /tmp/nodejs-sample-pipeline.yaml"
+
+- name: "[RHFORUM][BREAK] Breaking..."
+  shell: "oc delete sa jenkins"
+
+- name: "[RHFORUM][BREAK] Breaking..."
+  shell: "oc rollout latest jenkins"

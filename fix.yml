@@ -1,6 +1,6 @@
 ---
 
-- name: "[RHFORUM][BASE] Install & Config base SW"
+- name: "[RHFORUM][FIX] Fixing CICD..."
   hosts: all
   remote_user: root
   roles:

@@ -1,0 +1,111 @@
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: jenkins-new
+    name: jenkins-new
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: jenkins/jenkins
+      from:
+        kind: DockerImage
+        name: jenkins/jenkins
+      generation: null
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: ""
+  status:
+    dockerImageRepository: ""
+- apiVersion: apps.openshift.io/v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: jenkins-new
+    name: jenkins-new
+  spec:
+    replicas: 1
+    selector:
+      app: jenkins-new
+      deploymentconfig: jenkins-new
+    strategy:
+      resources: {}
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: jenkins-new
+          deploymentconfig: jenkins-new
+      spec:
+        containers:
+        - image: jenkins/jenkins
+          name: jenkins-new
+          ports:
+          - containerPort: 50000
+            protocol: TCP
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          volumeMounts:
+          - mountPath: /var/jenkins_home
+            name: jenkins-volume-1
+        volumes:
+        - emptyDir: {}
+          name: jenkins-volume-1
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - jenkins-new
+        from:
+          kind: ImageStreamTag
+          name: jenkins-new:latest
+      type: ImageChange
+  status:
+    availableReplicas: 0
+    latestVersion: 0
+    observedGeneration: 0
+    replicas: 0
+    unavailableReplicas: 0
+    updatedReplicas: 0
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: jenkins-new
+    name: jenkins
+  spec:
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    - name: 50000-tcp
+      port: 50000
+      protocol: TCP
+      targetPort: 50000
+    selector:
+      app: jenkins-new
+      deploymentconfig: jenkins-new
+  status:
+    loadBalancer: {}
+kind: List
+metadata: {}
