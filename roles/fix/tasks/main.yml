@@ -1,7 +1,7 @@
 ---
 
 - name: "[RHFORUM][FIX] Fixing..."
-  shell: "virsh snapshot-revert --domain {{ item }} --snapshotname break"
+  shell: "virsh snapshot-revert --domain {{ item }} --snapshotname {{ item }}"
   with_items: "{{ lab }}"
 
 - name: "[RHFORUM][FIX] Waiting to the connection of the SSH"
