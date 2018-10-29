@@ -4,7 +4,7 @@
   shell: "oc new-project bad-code"
 
 - name: "[RHFORUM][BREAK] Breaking..."
-  shell: "oc new-app jenkins-ephemereal"
+  shell: "oc new-app jenkins-ephemeral"
 
 - name: "[RHFORUM][BREAK] Breaking..."
   template:
