@@ -1,0 +1,8 @@
+---
+
+- name: "[RHFORUM][BREAK] Breaking the awesome Lab at Red Hat Forum Madrid 2018"
+  shell: "oc new-project bad-code"
+
+- name: "[RHFORUM][BREAK] Breaking the awesome Lab at Red Hat Forum Madrid 2018"
+  shell: "oc create -f {{ playbook_dir }}/templates/nodejs-sample-pipeline-broken.yaml.j2"
+

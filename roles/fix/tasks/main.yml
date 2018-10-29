@@ -1,0 +1,11 @@
+---
+
+- name: "[RHFORUM][FIX] Fixing..."
+  shell: "virsh snapshot-revert --domain {{ item }} --snapshotname break"
+  with_items: "{{ lab }}"
+
+- name: "[RHFORUM][FIX] Waiting to the connection of the SSH"
+  wait_for_connection:
+    delay: 10
+    timeout: 60
+

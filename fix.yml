@@ -1,0 +1,7 @@
+---
+
+- name: "[RHFORUM][BASE] Install & Config base SW"
+  hosts: cicd
+  remote_user: root
+  roles:
+    - { role: fix }
