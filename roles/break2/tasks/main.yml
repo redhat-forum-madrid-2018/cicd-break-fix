@@ -17,5 +17,8 @@
 - name: "[RHFORUM][BREAK] Breaking..."
   shell: "oc delete sa jenkins"
 
+- pause: 
+    seconds: 60
+
 - name: "[RHFORUM][BREAK] Breaking..."
   shell: "oc rollout latest jenkins"
